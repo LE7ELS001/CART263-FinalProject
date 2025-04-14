@@ -72,6 +72,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
 
         //player health 
+        this.maxHealth = 100;
         this.health = this.maxHealth;
 
         //player mana
