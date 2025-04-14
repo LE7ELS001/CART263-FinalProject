@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Start Menu</title>
@@ -9,7 +10,8 @@
       src: url('https://fonts.cdnfonts.com/s/24530/PressStart2P-Regular.woff') format('woff');
     }
 
-    html, body {
+    html,
+    body {
       height: 100%;
       margin: 0;
       padding: 0;
@@ -29,6 +31,7 @@
       from {
         opacity: 0;
       }
+
       to {
         opacity: 1;
       }
@@ -39,6 +42,7 @@
         opacity: 0;
         transform: translateX(-100px);
       }
+
       to {
         opacity: 1;
         transform: translateX(0);
@@ -58,7 +62,7 @@
       color: white;
       text-align: center;
       box-sizing: border-box;
-      animation: fadeIn 1s ease; 
+      animation: fadeIn 1s ease;
     }
 
     .menu-item {
@@ -73,9 +77,11 @@
     .menu-item:nth-child(1) {
       animation-delay: 0.2s;
     }
+
     .menu-item:nth-child(2) {
       animation-delay: 0.4s;
     }
+
     .menu-item:nth-child(3) {
       animation-delay: 0.6s;
     }
@@ -92,12 +98,13 @@
       margin-top: 30px;
       white-space: pre-line;
       font-size: 14px;
-      background: rgba(0,0,0,0.7);
+      background: rgba(0, 0, 0, 0.7);
       padding: 15px;
       border: 1px solid white;
     }
   </style>
 </head>
+
 <body>
   <!-- Background Music -->
   <audio id="bg-music" loop>
@@ -163,7 +170,7 @@
 
       if (selection === 'Start Game') {
         setTimeout(() => {
-          window.location.href = 'index.html';
+          window.location.href = 'main.html';
         }, 300);
       } else if (selection === 'How to Play') {
         infoBox.innerText =
@@ -203,4 +210,5 @@
     });
   </script>
 </body>
+
 </html>
