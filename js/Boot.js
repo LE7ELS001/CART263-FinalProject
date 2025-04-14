@@ -8,7 +8,7 @@ class Boot extends Phaser.Scene {
     preload() {
 
         //load Player Assets
-        this.load.spritesheet("avatar-idle", "Assets/Character/Player/_Idle.png", {
+        this.load.spritesheet("avatar-idle", "./Assets/Character/Player/_Idle.png", {
             frameWidth: 120,
             frameHeight: 80,
             spacing: 0,
