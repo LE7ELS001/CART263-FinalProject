@@ -1,71 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Final project</title>
-
-  <script src="js/phaser.js"></script>
-
+  <meta charset="UTF-8">
+  <title>Start Menu</title>
   <style>
-    html,
-    body {
+    @font-face {
+      font-family: 'PixelFont';
+      src: url('https://fonts.cdnfonts.com/s/24530/PressStart2P-Regular.woff') format('woff');
+    }
+
+    html, body {
+      height: 100%;
       margin: 0;
       padding: 0;
       background-color: black;
-      height: 100%;
+      font-family: 'PixelFont', monospace;
+      image-rendering: pixelated;
+    }
+
+    body {
       display: flex;
       justify-content: center;
       align-items: center;
+      background-color: black;
     }
 
-    #game-container {
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-100px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    #container {
       width: 800px;
       height: 600px;
-      position: relative;
+      background-image: url('Assets/Pictures/startbackground.png');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      box-sizing: border-box;
+      animation: fadeIn 1s ease; 
     }
 
-    canvas {
-      display: block;
-      margin: 0 auto;
+    .menu-item {
+      margin: 20px;
+      cursor: pointer;
+      font-size: 20px;
+      outline: none;
+      opacity: 0;
+      animation: slideInLeft 0.6s ease forwards;
+    }
+
+    .menu-item:nth-child(1) {
+      animation-delay: 0.2s;
+    }
+    .menu-item:nth-child(2) {
+      animation-delay: 0.4s;
+    }
+    .menu-item:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+
+    .menu-item.selected,
+    .menu-item:hover,
+    .menu-item:focus {
+      color: yellow;
+      text-shadow: 0 0 5px yellow, 0 0 10px yellow;
+      outline: none;
+    }
+
+    #info-box {
+      margin-top: 30px;
+      white-space: pre-line;
+      font-size: 14px;
+      background: rgba(0,0,0,0.7);
+      padding: 15px;
+      border: 1px solid white;
     }
   </style>
 </head>
-
 <body>
-  <div id="game-container"></div>
+  <!-- Background Music -->
+  <audio id="bg-music" loop>
+    <source src="Assets/Music/startmusic.mp3" type="audio/mpeg">
+    Your browser does not support the audio tag.
+  </audio>
 
-  <!-- Your script loading order preserved -->
-  <script src="Assets/Portal/portalAnim.js"></script>
-  <script src="events/Emitter.js"></script>
-  <script src="group/collectablesGroup.js"></script>
-  <script src="collectables/upgradeCollectables.js"></script>
-  <script src="Assets/AttackBox/AttackBox.js"></script>
-  <script src="mixins/anims.js"></script>
-  <script src="Assets/EffectAnims/effectManager.js"></script>
-  <script src="Assets/EffectAnims/spriteEffect.js"></script>
-  <script src="Assets/EffectAnims/effectAnims.js"></script>
-  <script src="Assets/Projectile/ProjectilAnims.js"></script>
-  <script src="Assets/utils/functions.js"></script>
-  <script src="Assets/Projectile/Enemy_projectile.js"></script>
-  <script src="Assets/Projectile/Player_projectile.js"></script>
-  <script src="Assets/Projectile/projectilesPool.js"></script>
-  <script src="Assets/hub/manaBar.js"></script>
-  <script src="Assets/hub/healthBar.js"></script>
-  <script src="entities/anims/PlayerAnims.js"></script>
-  <script src="entities/Player.js"></script>
-  <script src="entities/Enemy.js"></script>
-  <script src="entities/Mushroom.js"></script>
-  <script src="entities/Boar.js"></script>
-  <script src="entities/anims/MushroomAnims.js"></script>
-  <script src="entities/anims/BoarAnims.js"></script>
-  <script src="EnemyType/EnemyType.js"></script>
-  <script src="group/Enemies.js"></script>
-  <script src="mixins/collidable.js"></script>
-  <script src="js/Scene1.js"></script>
-  <script src="js/Boot.js"></script>
-  <script src="js/main.js"></script>
+  <!-- Switch sound -->
+  <audio id="switch-sound" src="Assets/Audio/switch.mp3"></audio>
+
+  <!-- Confirm sound -->
+  <audio id="confirm-sound" src="Assets/Audio/confirm.mp3"></audio>
+
+  <div id="container">
+    <div id="menu">
+      <div class="menu-item selected" tabindex="0">Start Game</div>
+      <div class="menu-item" tabindex="0">How to Play</div>
+      <div class="menu-item" tabindex="0">Credits</div>
+    </div>
+
+    <div id="info-box"></div>
+  </div>
+
+  <script>
+    const menuItems = document.querySelectorAll('.menu-item');
+    const infoBox = document.getElementById('info-box');
+    let currentSelection = 0;
+
+    const bgMusic = document.getElementById('bg-music');
+    bgMusic.volume = 0.7;
+
+    function enableMusicPlayback() {
+      if (bgMusic.paused) {
+        bgMusic.play().catch(e => console.log('Autoplay blocked:', e));
+      }
+      document.removeEventListener('click', enableMusicPlayback);
+    }
+
+    document.addEventListener('click', enableMusicPlayback);
+
+    function updateMenu() {
+      menuItems.forEach((item, index) => {
+        item.classList.toggle('selected', index === currentSelection);
+      });
+
+      const switchSound = document.getElementById('switch-sound');
+      if (switchSound) {
+        switchSound.currentTime = 0;
+        switchSound.play().catch(e => console.log('Switch sound failed:', e));
+      }
+
+      menuItems[currentSelection].focus();
+    }
+
+    function executeSelection() {
+      const selection = menuItems[currentSelection].innerText;
+
+      const confirmSound = document.getElementById('confirm-sound');
+      if (selection === 'Start Game' && confirmSound) {
+        confirmSound.currentTime = 0;
+        confirmSound.play().catch(e => console.log('Confirm sound failed:', e));
+      }
+
+      if (selection === 'Start Game') {
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 300);
+      } else if (selection === 'How to Play') {
+        infoBox.innerText =
+          'Controls:\n' +
+          '← → : Move\n' +
+          'SPACE : Jump\n' +
+          'Z : Skill\n' +
+          'X : Attack\n' +
+          'C : Roll';
+      } else if (selection === 'Credits') {
+        infoBox.innerText = 'Game by:\nJunming He\nTianshun Wu';
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowUp') {
+        currentSelection = (currentSelection - 1 + menuItems.length) % menuItems.length;
+        updateMenu();
+      } else if (e.key === 'ArrowDown') {
+        currentSelection = (currentSelection + 1) % menuItems.length;
+        updateMenu();
+      } else if (e.key === 'Enter' || e.key === 'z' || e.key === 'Z') {
+        executeSelection();
+      }
+    });
+
+    menuItems.forEach((item, index) => {
+      item.addEventListener('click', () => {
+        currentSelection = index;
+        updateMenu();
+        executeSelection();
+      });
+    });
+
+    window.addEventListener('load', () => {
+      menuItems[currentSelection].focus();
+    });
+  </script>
 </body>
-
 </html>
