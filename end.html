@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Thank You</title>
+  <style>
+    @font-face {
+      font-family: 'PixelFont';
+      src: url('https://fonts.cdnfonts.com/s/24530/PressStart2P-Regular.woff') format('woff');
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'PixelFont', monospace;
+      image-rendering: pixelated;
+    }
+
+    #container {
+      width: 800px;
+      height: 600px;
+      background-image: url("assets/Pictures/thankyouPage.png");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 1s ease;
+      color: white;
+      text-align: center;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .thank-you-text {
+      font-size: 20px;
+      margin-bottom: 30px;
+      opacity: 0;
+      animation: slideInLeft 0.6s ease forwards;
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-100px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 14px;
+      font-family: 'PixelFont', monospace;
+      background-color: #222;
+      color: white;
+      border: 2px solid white;
+      cursor: pointer;
+      opacity: 0;
+      animation: slideInLeft 0.6s ease forwards;
+      animation-delay: 0.5s;
+    }
+
+    button:hover {
+      background-color: white;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <button onclick="location.href='main.html'">Return to Main Menu</button>
+  </div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Final project</title>
+
+  <script src="js/phaser.js"></script>
+
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #game-container {
+      width: 800px;
+      height: 600px;
+      position: relative;
+    }
+
+    canvas {
+      display: block;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="game-container"></div>
+
+  <!-- Your script loading order preserved -->
+  <script src="Assets/Portal/portalAnim.js"></script>
+  <script src="events/Emitter.js"></script>
+  <script src="group/collectablesGroup.js"></script>
+  <script src="collectables/upgradeCollectables.js"></script>
+  <script src="Assets/AttackBox/AttackBox.js"></script>
+  <script src="mixins/anims.js"></script>
+  <script src="Assets/EffectAnims/effectManager.js"></script>
+  <script src="Assets/EffectAnims/spriteEffect.js"></script>
+  <script src="Assets/EffectAnims/effectAnims.js"></script>
+  <script src="Assets/Projectile/ProjectilAnims.js"></script>
+  <script src="Assets/utils/functions.js"></script>
+  <script src="Assets/Projectile/Enemy_projectile.js"></script>
+  <script src="Assets/Projectile/Player_projectile.js"></script>
+  <script src="Assets/Projectile/projectilesPool.js"></script>
+  <script src="Assets/hub/manaBar.js"></script>
+  <script src="Assets/hub/healthBar.js"></script>
+  <script src="entities/anims/PlayerAnims.js"></script>
+  <script src="entities/Player.js"></script>
+  <script src="entities/Enemy.js"></script>
+  <script src="entities/Mushroom.js"></script>
+  <script src="entities/Boar.js"></script>
+  <script src="entities/anims/MushroomAnims.js"></script>
+  <script src="entities/anims/BoarAnims.js"></script>
+  <script src="EnemyType/EnemyType.js"></script>
+  <script src="group/Enemies.js"></script>
+  <script src="mixins/collidable.js"></script>
+  <script src="js/Scene1.js"></script>
+  <script src="js/Boot.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
