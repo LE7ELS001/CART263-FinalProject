@@ -391,15 +391,27 @@ class Scene1 extends Phaser.Scene {
 
     createGameEvent() {
         window.EventEmitter.on('PLAYER_LOOSE', () => {
-            this.sound.stopAll();
-            this.scene.restart({ gameStatus: 'PLAYER_LOOSE' });
-        })
-    }
+          const bgm = this.sound.get('bgm-forest');
+          if (bgm && bgm.isPlaying) {
+            bgm.stop(); 
+          }
+          this.scene.restart({ gameStatus: 'PLAYER_LOOSE' });
+        });
+      }
+      
 
     playBgMusic() {
-        if (this.sound.get('bgm-forest')) { return; }
-        this.sound.add('bgm-forest', { loop: true, volumn: 0.5 }).play();
-    }
+        const bgm = this.sound.get('bgm-forest');
+        if (bgm && bgm.isPlaying) return; 
+      
+        if (!bgm) {
+          this.sound.add('bgm-forest', { loop: true, volume: 0.5 }).play();
+        } else {
+          bgm.play(); 
+        }
+      }
+      
+      
 
     savePlayerData() {
         if (this.player) {

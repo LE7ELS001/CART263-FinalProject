@@ -8,77 +8,77 @@ class Boot extends Phaser.Scene {
     preload() {
 
         //load Player Assets
-        this.load.spritesheet("avatar-idle", "./Assets/Character/Player/_Idle.png", {
+        this.load.spritesheet("avatar-idle", "Assets/Character/Player/_Idle.png", {
             frameWidth: 120,
             frameHeight: 80,
             spacing: 0,
             endFrame: 9
         });
 
-        this.load.spritesheet("avatar-run", "./Assets/Character/Player/_Run.png", {
+        this.load.spritesheet("avatar-run", "Assets/Character/Player/_Run.png", {
             frameWidth: 120,
             frameHeight: 80,
             spacing: 0,
             endFrame: 9
         });
 
-        this.load.spritesheet("attack1", "./Assets/Character/Player/_Attack.png", {
+        this.load.spritesheet("attack1", "Assets/Character/Player/_Attack.png", {
             frameWidth: 120,
             frameHeight: 80,
             spacing: 0,
             endFrame: 3
         });
 
-        this.load.spritesheet("attack2", "./Assets/Character/Player/_Attack2.png", {
+        this.load.spritesheet("attack2", "Assets/Character/Player/_Attack2.png", {
             frameWidth: 120,
             frameHeight: 80,
             spacing: 0,
             endFrame: 5
         });
 
-        this.load.spritesheet("roll", "./Assets/Character/Player/_Roll.png", {
+        this.load.spritesheet("roll", "Assets/Character/Player/_Roll.png", {
             frameWidth: 120,
             frameHeight: 80,
             spacing: 0,
             endFrame: 11
         });
 
-        this.load.spritesheet("avatar-jump", "./Assets/Character/Player/_Jump.png", {
+        this.load.spritesheet("avatar-jump", "Assets/Character/Player/_Jump.png", {
             frameWidth: 120,
             frameHeight: 80,
             spacing: 0,
             endFrame: 2
         });
 
-        this.load.spritesheet("avatar-fall", "./Assets/Character/Player/_Fall.png", {
+        this.load.spritesheet("avatar-fall", "Assets/Character/Player/_Fall.png", {
             frameWidth: 120,
             frameHeight: 80,
             spacing: 0,
             endFrame: 2
         });
 
-        this.load.spritesheet("avatar-Jumpfall", "./Assets/Character/Player/_JumpFall.png", {
+        this.load.spritesheet("avatar-Jumpfall", "Assets/Character/Player/_JumpFall.png", {
             frameWidth: 120,
             frameHeight: 80,
             spacing: 0,
             endFrame: 1
         });
 
-        this.load.spritesheet("avatar-wallslide", "./Assets/Character/Player/_WallSlide.png", {
+        this.load.spritesheet("avatar-wallslide", "Assets/Character/Player/_WallSlide.png", {
             frameWidth: 120,
             frameHeight: 80,
             spacing: 0,
             endFrame: 2
         });
 
-        this.load.spritesheet("avatar-crouchDown", "./Assets/Character/Player/_CrouchAll.png", {
+        this.load.spritesheet("avatar-crouchDown", "Assets/Character/Player/_CrouchAll.png", {
             frameWidth: 120,
             frameHeight: 80,
             spacing: 0,
             endFrame: 1
         });
 
-        this.load.spritesheet("avatar-up", "./Assets/Character/Player/_CrouchAll.png", {
+        this.load.spritesheet("avatar-up", "Assets/Character/Player/_CrouchAll.png", {
             frameWidth: 120,
             frameHeight: 80,
             spacing: 0,
@@ -86,7 +86,7 @@ class Boot extends Phaser.Scene {
             endFrame: 2
         });
 
-        this.load.spritesheet("avatar-jump2", "./Assets/Character/Player/_Jump2.png", {
+        this.load.spritesheet("avatar-jump2", "Assets/Character/Player/_Jump2.png", {
             frameWidth: 120,
             frameHeight: 80,
             spacing: 0,
@@ -94,21 +94,21 @@ class Boot extends Phaser.Scene {
         });
 
 
-        this.load.spritesheet("avatar-death", "./Assets/Character/Player/_Death.png", {
+        this.load.spritesheet("avatar-death", "Assets/Character/Player/_Death.png", {
             frameWidth: 120,
             frameHeight: 80,
             spacing: 0,
             endFrame: 9
         });
 
-        this.load.spritesheet("wind1", "./Assets/Character/Player/wind.png", {
+        this.load.spritesheet("wind1", "Assets/Character/Player/wind.png", {
             frameWidth: 64,
             frameHeight: 64,
             spacing: 0,
             endFrame: 12
         });
 
-        this.load.image("avatar-takesHit", "./Assets/Character/Player/_Hit.png");
+        this.load.image("avatar-takesHit", "Assets/Character/Player/_Hit.png");
 
         /**
          * Load enemy
